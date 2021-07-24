@@ -1,5 +1,5 @@
 {
-  "name": "build-all",
+  "name": "build_bnfont",
   "version": "1.0.0",
   "author": "numas",
   "main": "index.js",
