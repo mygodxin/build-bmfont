@@ -11,6 +11,7 @@ let argv = minimist_1.default(process.argv.slice(2));
 const srcPath = path_1.default.join(argv.src);
 const dstPath = path_1.default.join(argv.dst);
 const wordsTxtPath = path_1.default.join(srcPath, "Words.txt");
+const wordsTxtTmpPath = path_1.default.join(srcPath, ".tmpWords.txt");
 const bmfcPath = path_1.default.join(srcPath, "bmfont.bmfc");
 const qhkFntPath = path_1.default.join(argv.dst, "HQK.fnt");
 const bmfont64exe = path_1.default.join(__dirname, "bmfont1.14a/bmfont64.exe");;
@@ -31,16 +32,16 @@ let callCmdSync = function (cmd, cwd) {
 
 
 console.log(`---->> 读取动态字库文本 ${wordsTxtPath} >>----`);
-let wordsTxtStr = fs_extra_1.default.readFileSync(wordsTxtPath, { encoding: 'utf16le' });
+let wordsTxtStr = fs_extra_1.default.readFileSync(wordsTxtPath, { encoding: 'utf-8' });
 console.log(wordsTxtStr);
 /**
  * 需要转成 utf16le，并且是 crlf 格式
  * https://gist.github.com/zoellner/4af04a5a8b51f04ad653e26d3b7181ec
  */
-// console.log("---->> 动态将文本回写 >>----");
-// const utf16buffer = Buffer.from(`\ufeff${wordsTxtStr}`, 'utf16le');
-// fs_extra_1.default.writeFileSync(wordsTxtPath, utf16buffer);
+console.log("---->> 动态将文本回写 >>----");
+const utf16buffer = Buffer.from(`\ufeff${wordsTxtStr}`, 'utf16le');
+fs_extra_1.default.writeFileSync(wordsTxtTmpPath, utf16buffer);
 
-callCmdSync(`${bmfont64exe} -t ${wordsTxtPath} -c ${bmfcPath}  -o ${qhkFntPath}`, dstPath);
+callCmdSync(`${bmfont64exe} -t ${wordsTxtTmpPath} -c ${bmfcPath}  -o ${qhkFntPath}`, dstPath);
 
 console.log(">> build_bmfont >> End");
