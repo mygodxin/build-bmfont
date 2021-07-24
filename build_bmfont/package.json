@@ -1,0 +1,10 @@
+{
+  "name": "build-all",
+  "version": "1.0.0",
+  "author": "numas",
+  "main": "index.js",
+  "dependencies": {
+    "fs-extra": "^8.1.0",
+    "minimist": "^1.2.0"
+  }
+}
