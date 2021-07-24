@@ -111,3 +111,4 @@ npm install
 [Bitmap Font Generator](http://www.angelcode.com/products/bmfont/)
 [位图字体的制作与使用](https://cloud.tencent.com/developer/article/1754677)
 [write utf-16 encoded files in node.js (both utf16be and utf16le)](https://gist.github.com/zoellner/4af04a5a8b51f04ad653e26d3b7181ec)
+[电脑如何安装添加字体（ttf格式）？](https://jingyan.baidu.com/article/f0e83a257f30e722e4910163.html)
